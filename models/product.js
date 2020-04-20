@@ -9,10 +9,16 @@ const ProductSchema = mongoose.Schema(
       required: true
     },
     cor:{
-      type: String
+      type: String,
+      enum: ['Vermelho', 'Amarelo', 'Azul'],
+      required: function(){
+        return this.preco > 10
+      }
     },
     preco:{
-      type: Number
+      type: Number,
+      min: 1,
+      max: 1000
     }
   }
 );

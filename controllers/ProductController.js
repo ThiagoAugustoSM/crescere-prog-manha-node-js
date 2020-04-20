@@ -13,13 +13,38 @@ class ProductController{
     res.json(product);
   }
 
+  // Essa função retorna todos os produtos que derem um match com o body passado
+  // pela requisição
+  async getFiltered(req, res){
+    const body = req.body;
+    const products = await productModel.find(body);
+    res.json(products);
+  }
+
   // Recebe um produto no formato json via body da requisição
   // Cria um novo produto baseado no modelo do produto
   // Retorna o Produto criado, ou seja, o próprio req.body + uma nova propriedade de id gerada pelo MongoDB
   async put(req, res){
-    const body = req.body;
-    const product = await productModel.create(body);
-    res.json(product);
+    try{
+      const body = req.body;
+
+      // Validação antes da criação, sem a validação padrão do Mongoose
+      // if(body["nome"] == undefined){
+      //   res.status(400).send('Para criar um produto tem que ter o atributo nome')
+      // }
+      // if(body["preco"] < 0){
+      //   res.status(400).send('Para criar um produto tem que ter o preco maior do que 0')
+      // }
+      // if(typeof body["cor"] != "string"){
+      //   res.status(400).send('Para criar um produto tem que ter a cor no formato de string')
+      // }
+      const product = await productModel.create(body);
+      res.json(product);
+    } catch (error){
+      console.log(error);
+      res.status(400).json(error);
+    }
+    
   }
 
   // Rota para atualização de algum produto, baseado no id
