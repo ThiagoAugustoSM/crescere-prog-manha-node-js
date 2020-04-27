@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 // Criando um novo Schema para o nosso Produto
 const UserSchema = mongoose.Schema(
   {
-    nome:{
+    name:{
       type: String,
       required: true
     },

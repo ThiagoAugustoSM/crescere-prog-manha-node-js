@@ -18,11 +18,14 @@ passport.use(new LocalStrategy({
             async function (email, password, done){
 
               await UserModel.findOne({ email }, (err, user) => {
-
+                
+                // Done é chamada ao terminar o trabalho da passport
+                // done(erro, usuário, mensagemParaUsuario)
                 if(err){
                   return done(err)
                 }
                 
+                // user == null
                 if(!user){
                   // erro, usuário, mensagem
                   return done(null, false, {message: 'Email de usuário não existe!'})
@@ -46,7 +49,7 @@ passport.use(new LocalStrategy({
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretKey: secretKey
+  secretOrKey: secretKey
 }
 // Saber se o token do jwt é válido
 passport.use(new JwtStrategy(opts, async(payload, done) => {
@@ -73,4 +76,4 @@ passport.deserializeUser(async (id, done) => {
   })
 })
 
-module.export = passport
+module.exports = passport
