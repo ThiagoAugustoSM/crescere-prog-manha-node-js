@@ -32,7 +32,7 @@ passport.use(new LocalStrategy({
                 }
                 // NESTE PONTO O EMAIL PASSADO PELO FORMULÁRIO É EXATAMENTE A UM EMAIL DO BANCO
                 // User.passord - valor que ta salvo no banco
-                // password - valor passado pelo formulário
+                // password - valor passado pelo formulário, no nosso caso postman
                 user.compare(password, user.password)
                   .then(match => {
                     
