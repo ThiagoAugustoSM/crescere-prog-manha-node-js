@@ -20,6 +20,6 @@ app.use(routes);
 //   res.render('index', {titleProduto: 'Sapataria Peter', message: 'Compre sapatos!'})
 // })
 
-app.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
   console.log('Opa! O Servidor da Sapataria de Peter começou!')
 })
