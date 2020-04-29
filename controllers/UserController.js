@@ -11,7 +11,7 @@ const secretKey = process.env.SECRET_KEY
 
 class UserController{
   home(req, res){
-    res.send('Bem vindo a página inicial!')
+    res.send('Bem vindo a página inicial! Sapataria do Peter!')
   }
 
   authorization(req, res, next){
